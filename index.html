@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+
+
+        <div class="Header">
+            <h1>Task Tracker</h1>
+            <button @click="addNew">Add Task</button>
+        </div>
+
+
+        <div v-show="currentPage == 'Home'" class="Tasks">  <!--Only show main content if 'currentPage' is set to Home -->
+            <div class="add-task">
+                <h3>Add Task:</h3>
+                <input v-model="addInput" type="text">  <!--v-model automatically links input to javascript variable-->
+            </div>
+
+            <div v-for="task in tasks"> <!--v-for iterates all elments in tasks array and creates HTML-->
+                <div class="task">
+                    <h3>{{task.text}} <i @click="deleteTask(task.id)" class="fas fa-times"></i> </h3>
+                    <p>{{task.day}}</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div v-show="currentPage == 'About'">   <!--Only show about content if 'currentPage' is set to About-->
+            <h1>About</h1>
+            <p>Version 1.0</p>
+            <a @click="currentPage = 'Home'" href="#">Home</a> <!--@click sets the currentPage variable to Home-->
+        </div>
+
+        <div>
+            <footer>
+                <p>Copyright &copy; 2021</p>
+                <a @click="currentPage = 'About'" href="#">About</a> <!--@click sets the currentPage variable to About-->
+            </footer>
+        </div>
+
+
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
